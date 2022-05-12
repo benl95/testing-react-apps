@@ -3,22 +3,28 @@
 
 import * as React from 'react'
 import {render, screen} from '@testing-library/react'
-import {jest} from '@jest/globals'
+import faker from 'faker'
 import userEvent from '@testing-library/user-event'
 import Login from '../../components/login'
 
-function getInputFieldsFromScreen(...labels) {
+function getInputFieldsFromForm(...labels) {
   return labels.map((label, _) => screen.getByLabelText(label))
+}
+
+function buildLoginForm() {
+  return {
+    username: faker.internet.userName(),
+    password: faker.internet.password(),
+  }
 }
 
 test('submitting the form calls onSubmit with username and password', async () => {
   const user = userEvent.setup()
   const handleSubmit = jest.fn()
   render(<Login onSubmit={handleSubmit} />)
-  const username = 'User'
-  const password = 'User1234'
 
-  const [usernameInputField, passwordInputField] = getInputFieldsFromScreen(
+  const {username, password} = buildLoginForm()
+  const [usernameInputField, passwordInputField] = getInputFieldsFromForm(
     /username/i,
     /password/i,
   )
