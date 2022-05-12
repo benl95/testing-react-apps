@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`omitting the username results in an error 1`] = `
+<div>
+  username required
+</div>
+`;
