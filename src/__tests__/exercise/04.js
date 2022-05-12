@@ -11,10 +11,11 @@ function getInputFieldsFromForm(...labels) {
   return labels.map((label, _) => screen.getByLabelText(label))
 }
 
-function buildLoginForm() {
+function buildLoginForm(overrides) {
   return {
     username: faker.internet.userName(),
     password: faker.internet.password(),
+    ...overrides,
   }
 }
 
