@@ -48,7 +48,7 @@ test('omitting the username results in an error', async () => {
   const {password} = buildLoginForm()
   const [passwordInputField] = getInputFieldsFromForm(/password/i)
 
-  // don't type in the username
+  // user doesn't enter a username
   await userEvent.type(passwordInputField, password)
   await userEvent.click(screen.getByRole('button', {name: /submit/i}))
   await waitForElementToBeRemoved(() => screen.getByLabelText(/loading/i))
